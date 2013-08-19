@@ -1,0 +1,150 @@
+body{
+	font-family: "STXihei","Microsoft YaHei",Arial,sans-serif;	
+	background-image: url(../img/bg.jpg);	
+	background-attachment: fixed;
+	color: #000;
+	margin-bottom: 30px;
+}
+
+#presetContent {
+	display: none;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+header nav{
+	display: block;
+	background-color: #545652;
+	height: 2em;
+	line-height: 2em;
+	overflow: hidden;
+}
+
+header nav li a {
+	padding: 0.5em 0.2em;
+	text-decoration: none;
+	color:#CDC4BA;	
+}
+
+header nav li a:hover {
+	text-decoration: none;
+	color: #FFF4E7;
+}
+
+header nav li a:active{
+	color:#CDC4BA;	
+	text-decoration: none;
+}
+
+header nav li{
+	display: inline;
+}
+
+th {
+    text-align: right;
+    padding-right: 10px;
+    width: 20%;
+    font-weight: normal;
+    background-image: url(../img/th_bg.png);
+}
+
+th label:hover{
+    font-weight: bold;	
+}
+
+tr:hover th{
+	color: #fd8712;
+	background-image: url(../img/th_bg_hover.png);
+}
+
+td {
+	padding-left: 10px;
+	text-align: left;
+	background-color: #fff;
+	padding-right: 10px;
+}
+
+textarea{
+	width: 600px;
+	height: 250px;
+	background-image: url(http://oimageb6.ydstatic.com/image?id=6306700508202240193&product=gouwu );
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	color: black;
+	font-family: "Microsoft YaHei",STXihei,Arial,sans-serif;
+}
+
+.nav{
+	overflow: hidden;	
+}
+.input-xxlarge{
+	width: 600px;
+	font-family: "Microsoft YaHei",STXihei,Arial,sans-serif;
+}
+
+.alert-block{
+	width: 563px;
+	font-size: 80%;
+	font-family: "STXihei";
+	padding: 5px 30px 5px 5px;
+}
+
+.clearfix {
+	width:930px; 
+	margin:0px auto; 
+	text-align:center;
+}
+
+/*
+.navbar-fixed-bottom{
+	height: 10px;
+}*/
+
+.divider-line {
+	background-image: url(../img/divdd.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+#btn_save{
+	margin-left: 250px;
+	height: 30px;
+	width: 80px;
+}
+
+#dealContent{
+	width: 950px;
+	/* CHANGE MARGINS TO ACCOMODATE THE NEW WIDTH (original = margin: -250px 0 0 -280px;) */
+	margin: 0 0 0 -475px;
+}
+
+#dealContent .modal-body #dealPopup{
+	height: 600px; 
+	width: 910px;
+}
+
+#seriesIndex {
+	padding-bottom:10px;
+}
+
+#picUpload {
+	width: 600px;
+	height: 120px;
+	border: 1px solid;
+	border-color: #ccc;
+}
+
+
+#brand {
+	padding-right: 20px;
+}
+
+#login {
+	position:relative;
+	padding-left:33%;
+}
+
+
+

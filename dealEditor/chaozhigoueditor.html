@@ -1,0 +1,501 @@
+<html>
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <title>惠惠超值购信息编辑-网易返现管理系统</title> 
+  <link href="css/basic.css" rel="stylesheet" media="screen" />
+  <script src="js/jquery-2.0.2.min.js"></script> 
+  <script src="js/bootstrap.min.js"></script> 
+  <script src="js/dealsEditor.js"></script>
+ </head>
+ <body> 
+  <header id="header"> 
+   <nav>  
+     <ul class="mainNav"> 
+      <li><a href="http://www.huihui.cn/?keyfrom=background" target="_blank" id="brand"><img src="img/logo.png" alt=""></a></li>
+      <li><a href="http://gwfx.corp.youdao.com/admin/hui_content/query?channel=DEAL" title="">超值购</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/guide/series_list" title="">锦囊</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/guide_author" title="">攻略作者</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/guide/nav" title="">攻略导航</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/hui_comment" title="">评论</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/hui_deliver" title="">爆料</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/shop_coupon" title="">优惠券</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/hui_deliver/pro" title="">投递</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/sns" title="">社区</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/sns_user" title="">用户</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/sns_feed" title="">内容</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/shop_user" title="">商城</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/sns_black_ip" title="">IP黑名单</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/feed" title="">发文管理</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/hui_content/add" title="">+内容</a></li> 
+      <li><a href="http://gwfx.corp.youdao.com/admin/guide/series" title="">+锦囊</a></li> 
+      <li><a href="http://account.youdao.com/login?service=gouwu&back_url=http%3A%2F%2Fgwfx.corp.youdao.com%2Fadmin" target="_self" id="login" title="提醒：目前登录成功后这里也不会有变化">登录</a></li>
+     </ul> 
+   </nav>
+  </header> 
+<!--   <div class="miniNavi"> 
+     <ul class="nav nav-list"> 
+      <li><a href="#mainTitle">标题</a></li> 
+      <li><a href="#email">Email</a></li>
+       <li><a href="#pubTime">发布时间</a></li> 
+      <li><a href="#textarea_detail">信息详情</a></li> 
+      <li><a href="#textarea_summary">信息概述</a></li> 
+      <li><a href="#targetUrl">商品链接</a></li> 
+      <li><a href="#btn_save">保存</a></li> 
+     </ul> 
+  </div> -->
+  <div class="bd clearfix"> 
+   <div style="margin:15px 15px;"> 
+    <span style="color:red; font-size:1.2em; " id="saveFeedback"></span> 
+   </div> 
+   <form action="/admin/hui_content" method="post"> 
+    <input type="hidden" name="id" value="-1" />
+    <table> 
+     <input type="hidden" name="id" value="-1" /> 
+     <tbody>
+      <tr>
+        <th><img src="img/greeting.png" alt=""></th>
+        <td>&nbsp;</td>
+      </tr>
+      <tr> 
+       <th><label for="deals_type">全部-类型：</label></th> 
+       <td id="deals_type"> <label class="checkbox inline"><input type="checkbox" name="tagStr" value="1" />数码家电</label> <label class="checkbox inline"><input type="checkbox" name="tagStr" value="4" />服饰鞋包</label> <label class="checkbox inline"><input type="checkbox" name="tagStr" value="16" />食品百货</label> <label class="checkbox inline"><input type="checkbox" name="tagStr" value="32" />母婴玩具</label> <label class="checkbox inline"><input type="checkbox" name="tagStr" value="2" />运动健康</label> <label class="checkbox inline"><input type="checkbox" name="tagStr" value="64" />海外购</label> <label class="checkbox inline"><input type="checkbox" name="tagStr" value="8" />美妆个护</label> <label class="checkbox inline"><input type="checkbox" name="tagStr" value="128" />其他类别</label> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="content_channel">频道：</label></th> 
+       <td id="content_channel"> <label class="radio inline"><input type="radio" name="channel" value="DEAL" onclick="checkRadio()" />超值购</label> <label class="radio inline"><input type="radio" name="channel" value="PROFESSIONAL" onclick="checkRadio()" />锦囊</label> <label class="radio inline"><input type="radio" name="channel" value="WEEKLY" onclick="checkRadio()" />惠周刊</label> <label class="radio inline"><input type="radio" name="channel" value="PRICE" onclick="checkRadio()" />价格报</label> <label class="radio inline"><input type="radio" name="channel" value="NEWS" onclick="checkRadio()" />动态墙</label> <label class="radio inline"><input type="radio" name="channel" value="FEED" onclick="checkRadio()" />社区分享</label> </td> 
+      </tr> 
+      <tr> 
+       <th></th> 
+       <td id="seriesIndex"></td> 
+      </tr> 
+      <tr> 
+       <th><label for="mainTitle">信息主标题：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" id="mainTitle" name="title" required="required" value="" onkeyup="limit(this,54);" /> <a data-toggle="tooltip" data-placement="right" class="notices" title="文本字数有限制。超过规定字数的部分将被自动删除。"><i class="icon-info-sign"></i></a></td> 
+      </tr> 
+      <tr> 
+       <th><label for="subTitle">信息副标题：</label></th>
+       <td> <input class="input-xxlarge input-block-level" type="text" name="subTitle" id="subTitle" required="required" value="" /> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="email">Email：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" id="email" name="email" value="" onblur="searchNickName();" /> <a data-toggle="tooltip" data-placement="right" class="notices" title="展示小头像。超值购和锦囊需填网易通行证，系统会查询头像，可以为空"><i class="icon-info-sign"></i></a> <span class="label label-warning" id="emailAlert" ></span></td> 
+      </tr> 
+      <tr> 
+       <th><label for="submitter">推荐人：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" id="submitter" name="submitter" required="required" value="" /> <a data-toggle="tooltip" data-placement="right" class="notices" title="(锦囊)作者 | (超值购)推荐人 | 惠周刊和价格报可不写，线上就不会显示"><i class="icon-info-sign"></i></a> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="targetUrl">商品链接：</label></th> 
+       <td > <input class="input-xxlarge input-block-level" type="text" id="targetUrl" name="targetUrl" value="" onblur="checkFeed();" onchange="getDomain();"/> <br /> <label class="label label-info" id="shareFeedId">社区分享：/share/{feedId} </label><span id="feedAlert" class="label label-warning" ></span> </td>
+      </tr>
+      <tr> 
+       <th><label for="merchantDomain">所属商城域名：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" name="merchantDomain" id="merchantDomain" value="" /> <a data-toggle="tooltip" data-placement="right" class="notices" title="必须是已收录商家，锦囊、价格报可不填。填入商品链接时会自动提取域名到该处"><i class="icon-info-sign"></i></a> </td> 
+      </tr>        
+      <tr> 
+       <th><label for="guideAuthor">锦囊作者信息<a data-toggle="tooltip" data-placement="right" class="notices" title="详情页右边栏显示, 填写在锦囊作者中录入的网易通行证"><i class="icon-question-sign"></i></a>：</label></th> 
+       <td id="guideAuthor"> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="pubTime">发布时间：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" id="pubTime" type="text" name="pubTime" value="" /> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="endTimeInput">结束时间：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" id="endTimeInput" name="endTime" value="" /></td> 
+      </tr> 
+      <tr> 
+       <th><label for="buyWord">去购买：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" id="buyWord" name="buyWord" placeholder="￥..." value="" /> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="imageUrl">列表图片：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" id="imageUrl" name="imageUrl" placeholder="260*245 url" value="" /> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="picUpload">图片上传工具：</label></th> 
+       <td> <iframe id="picUpload" class="table-bordered" src="http://oimagec5.ydstatic.com/upload?method=viewUpload&amp;product=gouwu&amp;url=http%3A%2F%2Fgwfx.corp.youdao.com%2Fadmin%2Fad%3Fmethod%3DuploadImg%26imgInputId%3DimageUrl%26imgId%3DimageUrlShow" frameborder="0"></iframe> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="templateBlock">选择模板(块)：</label></th> 
+       <td id = "templateBlock"> 
+        <div class="btn-toolbar" style="margin: 0;"> 
+         <div class="btn-group"> 
+          <button class="btn dropdown-toggle" data-toggle="dropdown">超值购模板 <span class="caret"></span></button> 
+          <ul class="dropdown-menu"> 
+           <li><a href="javascript:void(0);" id="a_template1" onclick="chooseTemplate('template1');">普通两段式</a></li> 
+           <li><a href="javascript:void(0);" id="a_template2" onclick="chooseTemplate('template2');">普通三段式</a></li> 
+           <li><a href="javascript:void(0);" id="a_dailyGather" onclick="chooseTemplate('dailyGather');">今日热门汇总</a></li>
+           <li><a href="javascript:void(0);" id="a_template3" onclick="chooseTemplate('template3');">两段式+框介绍</a></li> 
+           <li><a href="javascript:void(0);" id="a_template4" onclick="chooseTemplatePart('template4');">+超值购编辑注</a></li>
+           <li><a href="javascript:void(0);" id="a_zhoushouAD" onclick="chooseTemplatePart('zhoushouAD');">+助手推广尾巴</a></li>
+          </ul> 
+         </div>
+         <!-- /btn-group --> 
+         <div class="btn-group"> 
+          <button class="btn dropdown-toggle" data-toggle="dropdown">其他模板块 <span class="caret"></span></button> 
+          <ul class="dropdown-menu"> 
+           <li class="dropdown-submenu"> <a>图片</a> 
+            <ul class="dropdown-menu"> 
+             <li><a href="javascript:void(0);" id="a_detailHeadImage" onclick="chooseTemplatePart('detailHeadImage');">详情头部图片</a></li> 
+             <li><a href="javascript:void(0);" id="a_imageWithoutDesc" onclick="chooseTemplatePart('imageWithoutDesc');">图片下方无标题</a></li> 
+             <li><a href="javascript:void(0);" id="a_imageWithDesc" onclick="chooseTemplatePart('imageWithDesc');">图片带下方标题</a></li> 
+            </ul> </li> 
+           <li class="dropdown-submenu"> <a>标题</a> 
+            <ul class="dropdown-menu"> 
+             <li><a href="javascript:void(0);" id="a_firstTitle" onclick="chooseTemplatePart('firstTitle');">一级标题</a></li> 
+             <li><a href="javascript:void(0);" id="a_secondTitle" onclick="chooseTemplatePart('secondTitle');">二级标题</a></li> 
+            </ul> </li> 
+           <li class="dropdown-submenu"> <a>段落</a> 
+            <ul class="dropdown-menu"> 
+             <li><a href="javascript:void(0);" id="a_normalParagraph" onclick="chooseTemplatePart('normalParagraph');">普通段落</a></li> 
+             <li><a href="javascript:void(0);" id="a_tabParagraph" onclick="chooseTemplatePart('tabParagraph');">首行缩进段落</a></li> 
+             <li><a href="javascript:void(0);" id="a_sideParagraph" onclick="chooseTemplatePart('sideParagraph');">带黄边框段落</a></li> 
+            </ul> </li> 
+           <li class="dropdown-submenu"> <a>列表</a> 
+            <ul class="dropdown-menu"> 
+             <li><a href="javascript:void(0);" id="a_numberedList" onclick="chooseTemplatePart('numberedList');">有序列表</a></li> 
+             <li><a href="javascript:void(0);" id="a_notNumberedList" onclick="chooseTemplatePart('notNumberedList');">无序列表</a></li> 
+            </ul> </li> 
+           <li class="dropdown-submenu"> <a>其他</a> 
+            <ul class="dropdown-menu"> 
+             <li><a href="javascript:void(0);" id="a_editorNote" onclick="chooseTemplatePart('editorNote');">编辑注</a></li> 
+             <li><a href="javascript:void(0);" id="a_author" onclick="chooseTemplatePart('author');">作者</a></li> 
+             <li><a href="javascript:void(0);" id="a_template5" onclick="chooseTemplatePart('template5');">+锦囊编辑注和版权</a></li> 
+            </ul> </li> 
+          </ul>
+         </div>
+         <!-- /btn-group --> 
+        </div>
+        <!-- /btn-toolbar --> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="textarea_detail">信息详情：</label></th> 
+       <td> <textarea required="required" id="textarea_detail" class="ckeditor" name="detailContent" onpaste="setHeight(this);" onclick="setHeight(this);" onblur="resetSize(this);"> </textarea> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="bth_cps">返现链接生成：</label></th> 
+       <td id="td_createCode"> <button type="button" class="btn btn-info" id="createCps" data-toggle="collapse" data-target="#content-convert">生成工具</button>
+        <div id="content-convert" class="collapse in"> 
+         <input type="button" class="btn" id="bth_cps" value="生成返现链接" onclick="createHtml();"/> 
+         <input type="button" class="btn" id="bth_highlight" value="高亮文本" onclick="HighlightContent();"/> 
+         <input type="button" class="btn" id="bth_bold" value="加粗文本" onclick="overstrikingContent();"/> 
+         <br /> 
+         <input class="input-xxlarge input-block-level" id="link_name" type="text" value="" placeholder="输入要转换的文本" /> 
+         <br /> 
+         <input class="input-xxlarge input-block-level" id="link_link" type="text" value="" placeholder="输入url地址" /> 
+         <br /> 
+         <input class="input-xxlarge input-block-level" id="link_html" type="text" value="" placeholder="输出html代码、高亮文本代码、加粗文本代码" /> 
+         <br /> 
+         <input class="input-xxlarge input-block-level" id="link_html2" type="text" value="" placeholder="输出cps html代码" /> 
+         <br /> 
+         <input class="input-xxlarge input-block-level" id="link_html3" type="text" value="" placeholder="输出cps链接" /> 
+        </div>
+       </td>
+      </tr> 
+      <tr> 
+       <th><label for="summaryTem">概述模板：</label></th> 
+       <td id="summaryTem"> <a class="btn" href="javascript:void(0);" id="a_SummaryTemplate" onclick="chooseSummaryTemplate('summaryTemplate1');">概述模板</a> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="textarea_summary">信息概述：</label></th> 
+       <td> <textarea id="textarea_summary" name="summary" onpaste="setHeight(this);" onclick="setHeight(this);" onblur="resetSize(this);"> </textarea> 
+        <div class="alert alert-block"> 
+         <button type="button" class="close" data-dismiss="alert">&times;</button> 
+         <span class="label label-warning"><i class="icon-exclamation-sign icon-white"></i></span> 
+         <span>两段文字，首页列表两段共显示约120字，以预览为准进行调整。 如果概述内容过长，在第二段末尾加上“<strong>......</strong>”，然后“继续阅读”选择“是”。检查标签div和p是否前后匹配，否则不能提交。</span> 
+        </div> </td> 
+      </tr> 
+      <tr> 
+       <th><label for="isContinued">继续阅读：</label></th> 
+       <td> <label class="radio inline"><input type="radio" name="isContinued" id="isContinued" value="true" checked="checked" />是</label> 
+        <label class="radio inline"><input type="radio" name="isContinued" value="false" />否</label> </td> 
+      </tr>    
+      <tr> 
+       <th><label for="isOnline">线上状态：</label></th> 
+       <td> <label class="radio inline"><input type="radio" name="isOnline" id="isOnline" value="true" /> 线上</label> <label class="radio inline"><input type="radio" name="isOnline" value="false" checked="checked" /> 线下</label> <span class="label label-important"><i class="icon-exclamation-sign icon-white"></i> 创建的时候不要选择“上线”，在列表处预览没问题后再“上线”！</span> </td> 
+      </tr>       
+      <tr> 
+       <th><label for="content_editor">责任编辑：</label></th> 
+       <td class="divider-line"> <input id="content_editor" class="input-xxlarge input-block-level" type="text" name="publisher" value="" /> <a data-toggle="tooltip" data-placement="right" class="notices" title="不会显示到线上"><i class="icon-info-sign"></i></a> </td> 
+      </tr> 
+      <tr class="rarelyUsed"> 
+       <th><label for="relatedFeedId">相关社区ID：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" id="relatedFeedId" name="relatedFeedId" value="" /> <a data-toggle="tooltip" data-placement="right" class="notices" title="用来同步评论和生成社区链接"><i class="icon-question-sign"></i></a> 
+      </tr> 
+      <tr class="rarelyUsed"> 
+       <th><label for="seoTitle">网页标题：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" name="seoTitle" id="seoTitle" value="" /> <a data-toggle="tooltip" data-placement="right" class="notices" title="尽量填写，作搜索引擎优化"><i class="icon-question-sign"></i></a> </td> 
+      </tr> 
+      <tr class="rarelyUsed"> 
+       <th><label for="seoKeywords">页面关键字：</label></th> 
+       <td> <input class="input-xxlarge input-block-level" type="text" name="seoKeywords" id="seoKeywords" value="" /> <a data-toggle="tooltip" data-placement="right" class="notices" title="页面内容相关的关键字"><i class="icon-question-sign"></i></a> </td> 
+      </tr> 
+      <tr class="rarelyUsed"> 
+       <th><label for="textarea_seoDescription">页面描述：</label></th> 
+       <td> <textarea id="textarea_seoDescription" name="seoDescription" onpaste="setHeight(this);" onclick="setHeight(this);" onblur="resetSize(this);"> </textarea> </td> 
+      </tr>             
+      <tr> 
+       <th></th> 
+       <td class="navbar navbar-fixed-bottom navbar-inner"> 
+          <ul class="nav">
+            <li><input class="submit btn btn-success btn-default" id="btn_save" type="submit" onclick="return checkInput();" value="保存" /></li>
+            <li><a data-toggle="modal" href="#dealContent" class="btn-mini">弹出内容列表</a></li>
+            <li><a href="#mainTitle">标题</a></li> 
+            <li><a href="#email">Email</a></li>
+            <li><a href="#targetUrl">商品链接</a></li>             
+            <li><a href="#pubTime">发布时间</a></li> 
+            <li><a href="#templateBlock">信息详情</a></li> 
+            <li><a href="#textarea_summary">信息概述</a></li> 
+            <li><a href="#content_editor">责任编辑</a></li> 
+            <li><a href="#header">回到顶部</a></li>             
+          </ul> 
+        </td> 
+      </tr> 
+     </tbody>
+    </table> 
+   </form>
+  <div id="dealContent" class="modal hide fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3 id="myModalLabel">惠惠内容列表</h3>
+    </div>
+    <div class="modal-body">
+      <iframe id="dealPopup" src="http://gwfx.corp.youdao.com/admin/hui_content/query?channel=DEAL" frameborder="0" scrolling="auto"></iframe> 
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal">关闭</button>
+      <a class="btn btn-primary" href="http://gwfx.corp.youdao.com/admin/hui_content/query?channel=DEAL" target="_blank">去内容列表</a>
+    </div>
+  </div>   
+<!--.........................模板预设的内容区.........................-->
+   <div id="presetContent"> 
+    <div id="template1"> 
+     <div class="editor-mod">
+      <div class="Strategy-pic">
+       <img alt="placehold" class="editer-content" src="
+        详情页图片地址
+       " /></div></div><div class="editor-mod"><p class="Strategy-indent-p editer-content">
+        第一段介绍
+      </p></div><div class="editor-mod"><p class="Strategy-indent-p editer-content">
+        第二段介绍
+      </p></div> 
+    </div> 
+    <div id="template2"> 
+     <div class="editor-mod">
+      <div class="Strategy-pic">
+       <img alt="placehold" class="editer-content" src="
+        详情页图片地址
+        " /></div></div><div class="editor-mod"><p class="Strategy-indent-p editer-content">
+        第一段介绍
+      </p></div><div class="editor-mod"><p class="Strategy-indent-p editer-content">
+        第二段介绍
+      </p></div><div class="editor-mod"><p class="Strategy-indent-p editer-content">
+        第三段介绍
+      </p></div> 
+    </div> 
+    <div id="dailyGather"> 
+     <div class="editor-mod"> 
+      <p class="Strategy-indent-p editer-content">每一天，从清晨到日暮，惠惠小编都在玩儿命寻找折扣信息。展示在首页的虽称不上万里挑一，可也是精挑细选。金无足赤，严格筛选下依然难免一些内容不合大家胃口，当然更多的是：出乎意料，脱颖而出，吸引大家疯狂下单的。最给力的折扣总是被抢光断货，要么被JS改价。小编只能把次给力折扣汇总于此，一来，督促小编每日自省，了解朋友们需求；二来，对无暇翻页浏览的朋友，方便将当天热门折扣一览无余。</p></div> 
+     <div class="editor-mod"> 
+      <p class="Strategy-indent-p editer-content"><b>活动类：</b></p></div> 
+     <div class="editor-mod"> 
+      <p class="Strategy-indent-p editer-content">
+       活动内容1 
+      </p>
+     </div> 
+     <div class="editor-mod"> 
+      <p class="Strategy-indent-p editer-content">
+       活动内容2 
+      </p>
+     </div> 
+     <div class="editor-mod"> 
+      <p class="Strategy-indent-p editer-content"><b>单品类：</b></p>
+     </div> 
+     <div class="editor-mod"> 
+      <p class="Strategy-indent-p editer-content">
+       单品内容1 
+      </p> 
+     </div> 
+     <div class="editor-mod">
+      <p class="Strategy-indent-p editer-content">
+       单品内容2 
+      </p>
+     </div> 
+    </div>     
+    <div id="template3"> 
+     <div class="editor-mod">
+      <div class="Strategy-pic">
+       <img alt="placehold" class="editer-content" src="详情页图片地址" />
+      </div>
+     </div>
+     <div class="editor-mod">
+      <p class="Strategy-indent-p editer-content"> 第一段介绍 </p>
+     </div>
+     <div class="editor-mod">
+      <p class="Strategy-indent-p editer-content"> 第二段介绍 </p>
+     </div>
+     <div class="editor-mod">
+      <p class="Strategy-border-p editer-content"> 框内介绍 </p>
+     </div> 
+    </div> 
+    <div id="template4"> 
+     <div class="editor-mod"> 
+      <div class="Strategy-editor-tips"> 
+       <p class="editer-content"> 【编辑注】超值购频道为大家分享超值、时尚、有品质的优惠信息，这里拒绝虚假广告和软文。我们深知，聪明理性的消费者既知道羊毛不可错过，又知道不贪小利、不买无用或低质的商品，我们的目标是和你一起用最具性价比的方式选购优质商品。如果您平时发现了好的超值信息，请<a href="http://www.huihui.cn/deliver/discount" target="_blank">点击这里爆料</a>，一旦采用将奖励您500返现积分！</p> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="template5"> 
+     <div class="editor-mod"> 
+      <div class="Strategy-editor-tips"> 
+       <p class="editer-content"> 【编辑注】<b>锦囊</b>是惠惠网重磅推出的优质内容频道。这里杜绝一切带有商业利益的推销软文，只致力于生产出具有一定专业深度的、并完全站在消费者立场上的导购内容。针对人们在购物之前需要进行较多调研与学习的品类，我们邀请各领域的资深达人们撰写详细的购物攻略长文。如果您有兴趣参与创作这样的文章，或对我们已发布的内容有更好的补充，欢迎随时联系我们投稿，一旦录用，我们将<b>按照国内一线杂志的标准向您支付稿酬</b>。有意向的朋友<a href="http://www.huihui.cn/deliver/guide" target="_blank">点击这里投稿</a>，我们欢迎您的加入，为整个互联网创造、梳理、积累更多的内容财富。</p> 
+       <p class="editer-content"> 【版权声明】本站所有标明作者的原创内容，版权归网站与作者共同所有，网站方维护作者合法权益。任何网络媒体或传统媒体如需刊用转帖转载，请提前与我们取得联系，特此声明。</p> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="zhoushouAD"> 
+     <div class="editor-mod"> <p class="Strategy-indent-p editer-content"><b>建议：商家的超值折扣转瞬即逝，推荐大家安装一个<a target="_blank" href="http://zhushou.huihui.cn/?vendor=pr11&amp;keyfrom=xiangqing">惠惠购物助手</a>，热门降价即时推荐，不错过每天的精彩折扣，<a target="_blank" href="http://zhushou.huihui.cn/?vendor=pr11&amp;keyfrom=xiangqing">立即体验&gt;&gt;</a></b></p></div> 
+    </div>    
+    <div id="detailHeadImage"> 
+     <div class="editor-mod"> 
+      <div class="Strategy-pic"> 
+       <img class="editer-content" src="http://placehold.it/680x230" /> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="imageWithoutDesc"> 
+     <div class="editor-mod"> 
+      <div class="Strategy-pic-center-title"> 
+       <img class="editer-content" src="http://placehold.it/660x300" /> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="imageWithDesc"> 
+     <div class="editor-mod"> 
+      <div class="Strategy-pic-center-title"> 
+       <img class="editer-content" src="http://placehold.it/660x300" /> 
+       <p class="Strategy-p-center editer-content">图：说明文字</p> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="editorNote"> 
+     <div class="editor-mod"> 
+      <div class="Strategy-editor-tips"> 
+       <p class="editer-content">【编辑注】编辑注内容</p> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="firstTitle"> 
+     <div class="editor-mod"> 
+      <h5 class="Strategy-h5 editer-content">一级标题</h5> 
+     </div> 
+    </div> 
+    <div id="secondTitle"> 
+     <div class="editor-mod"> 
+      <h6 class="Strategy-h6 editer-content">二级标题</h6> 
+     </div> 
+    </div> 
+    <div id="normalParagraph"> 
+     <div class="editor-mod"> 
+      <p class="Strategy-p editer-content">普通段落 内容</p> 
+     </div> 
+    </div> 
+    <div id="tabParagraph"> 
+     <div class="editor-mod"> 
+      <p class="Strategy-indent-p editer-content">首行缩进段落 内容</p> 
+     </div> 
+    </div> 
+    <div id="sideParagraph"> 
+     <div class="editor-mod"> 
+      <div class="Strategy-border-p"> 
+       <p class="editer-content">带黄边框段落 内容</p> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="numberedList"> 
+     <h5 class="Strategy-h5">有序列表 标题</h5> 
+     <div class="editor-mod"> 
+      <ul class="Strategy-ul-order"> 
+       <li class="editer-content"> <b>
+        1.第一条加粗内容。
+       </b>
+        第一条具体内容。
+       </li> 
+       <li class="editer-content"> <b>
+        2.第二条加粗内容。
+       </b>
+        第二条具体内容。
+       </li> 
+       <li class="editer-content"> <b>
+        3.第三条加粗内容。
+       </b>
+        第三条具体内容。
+       </li> 
+       <li class="editer-content"> <b>
+        4.第四条加粗内容。
+       </b>
+        第四条具体内容。
+       </li>                      
+      </ul> 
+     </div> 
+    </div> 
+    <div id="notNumberedList"> 
+     <div class="editor-mod"> 
+      <ul class="Strategy-ul-squre"> 
+       <li> <span class="li-squre">.</span> <p class="li-squre-content editer-content">
+        第一条具体内容。
+       </p> </li> 
+       <li> <span class="li-squre">.</span> <p class="li-squre-content editer-content">
+        第二条具体内容。
+       </p> </li> 
+      </ul> 
+     </div> 
+    </div>     
+    <div id="author"> 
+     <div class="editor-mod"> 
+      <div class="Strategy-about-author clearfix"> 
+       <div class="author-photo"> 
+        <img class="editer-content" src="insert author image(75*75)" alt="hold" /> 
+       </div> 
+       <div class="author-detail"> 
+        <p class="author-hd"> <span class="editer-content">本文作者</span>/ <em class="editer-content">头衔</em> </p> 
+        <p class="editer-content">作者介绍</p> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div id="seriesIndexTemplate"> 
+     <label class="radio inline"><input type="radio" name="seriesIndex" value="1" />1</label> 
+     <label class="radio inline"><input type="radio" name="seriesIndex" value="2" />2</label> 
+     <label class="radio inline"><input type="radio" name="seriesIndex" value="3" />3</label> 
+     <label class="radio inline"><input type="radio" name="seriesIndex" value="4" />4</label> 
+     <label class="radio inline"><input type="radio" name="seriesIndex" value="5" />5</label>&nbsp;&nbsp;
+     <span class="label label-info">锦囊在系列中的序号</span>    
+    </div> 
+    <div id="guideAuthorTemplate"> 
+     <input id="author_0" class="input-xxlarge input-block-level" type="text" name="author_0" value="" placeholder="第0作者" onblur="checkAuthor(this.value);" />
+     <br />
+     <input id="author_1" class="input-xxlarge input-block-level" type="text" name="author_1" value="" placeholder="第1作者" onblur="checkAuthor(this.value);" />
+     <br />
+     <input id="author_2" class="input-xxlarge input-block-level" type="text" name="author_2" value="" placeholder="第2作者" onblur="checkAuthor(this.value);" />
+     <span style="color:red;" id="isAuthorExist"></span> 
+     <input id="isValidAuthor" type="hidden" value="true" name="isValidAuthor" /> 
+    </div> 
+    <div id="summaryTemplate1"> 
+     <div class="hui-content"> 
+      <div class="hui-content-text"> 
+       <p>
+        第一段介绍
+       </p> <p>
+        第二段介绍......
+       </p> 
+      </div> 
+     </div> 
+    </div>     
+   </div>    
+  </div> 
+ </body>
+</html>
+
